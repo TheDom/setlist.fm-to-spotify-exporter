@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+
+  "name": "setlist.fm Playlist Exporter",
+  "description": "This extension exports setlists from setlist.fm as playlists",
+  "version": "0.1",
+
+  "page_action": {
+    "default_icon": {
+      "16": "images/icon.png",
+      "19": "images/icon.png",
+      "32": "images/icon.png",
+      "38": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_title": "Export playlist",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "declarativeContent",
+    "activeTab"
+  ]
+}
