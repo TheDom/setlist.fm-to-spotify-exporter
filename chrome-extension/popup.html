@@ -3,9 +3,40 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>setlist.fm Playlist Exporter</title>
+    <!-- Similar to Proxima Nova and Gotham which are used by Spotify -->
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            background-color: #121314;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .status {
+            width: 200px;
+            margin: 30px 20px;
+            text-align: center;
+        }
+
+        .status .line1 {
+            font-size: 20px;
+        }
+
+        .status .line2 {
+            font-size: 12px;
+        }
+
+        .gray {
+            color: #88898c;
+        }
+    </style>
+    <script src="js/setlist-fm-extractor.js"></script>
     <script src="popup.js"></script>
 </head>
 <body>
-    <h1>Export Playlist</h1>
+    <div class="status">
+        <div class="line1">Extracting data</div>
+        <div class="line2 gray">setlist.fm</div>
+    </div>
 </body>
 </html>
