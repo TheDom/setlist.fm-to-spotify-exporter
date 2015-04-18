@@ -1,0 +1,20 @@
+body {
+    background-color: #121314;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#status {
+    width: 320px;
+    margin: 30px 20px;
+    text-align: center;
+}
+
+#status-line1 {
+    font-size: 20px;
+}
+
+#status-line2 {
+    font-size: 12px;
+    color: #88898c;
+}

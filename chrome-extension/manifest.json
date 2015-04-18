@@ -19,10 +19,13 @@
   },
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
   "permissions": [
     "declarativeContent",
-    "activeTab"
+    "activeTab",
+    "identity",
+    "https://*.spotify.com/",
+    "https://www.facebook.com/"
   ]
 }
