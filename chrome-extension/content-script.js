@@ -16,7 +16,9 @@ var SetlistFmExtractor = {
     var songs = [];
     var songLabels = document.querySelectorAll('.setlistSongs .songLabel');
     for (var i = 0; i < songLabels.length; i++) {
-      songs.push(songLabels[i].textContent);
+      var song = songLabels[i].textContent;
+      // Split medley, e.g. 'Song A / Song B', into its songs
+      songs.push.apply(songs, song.split(' / '));
     }
     return songs;
   }
