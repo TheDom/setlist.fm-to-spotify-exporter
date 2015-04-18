@@ -113,11 +113,14 @@ Spotify.prototype.findSong = function(artist, song, callback) {
 };
 
 Spotify.prototype.createPlaylist = function(title, callback) {
+  var that = this;
   this.sendApiRequest('POST', '/v1/users/' + this.userId + '/playlists', {
     name: title,
     'public': false
   }, function(data) {
-    callback(data ? data.id : null);
+    var playlistId = (data ? data.id : null);
+    var playlistUrl = (playlistId ? 'https://open.spotify.com/user/' + that.userId + '/playlist/' + playlistId : null);
+    callback(playlistId, playlistUrl);
   });
 };
 

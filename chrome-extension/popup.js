@@ -4,11 +4,11 @@ function main() {
     if (request.type === 'setlist') {
       var setlist = request.data;
       if (setlist && setlist.songs && setlist.songs.length) {
-        setMessage('Searching songs on Spotify', setlist.artist + ' - ' + setlist.songs.length + ' songs');
+        showMessage('Searching songs on Spotify', setlist.artist + ' - ' + setlist.songs.length + ' songs');
         addSetlistAsPlaylistToSpotify(setlist);
 
       } else {
-        setMessage('Empty setlist', 'Playlist could not be created');
+        showMessage('Empty setlist', 'Playlist could not be created');
       }
     }
   });
@@ -25,28 +25,29 @@ function addSetlistAsPlaylistToSpotify(setlist) {
   var spotify = new Spotify();
   spotify.initialize(function(success) {
     if (!success) {
-      setMessage('Could not connect to Spotify', 'Please try again');
+      showMessage('Could not connect to Spotify', 'Please try again');
       return;
     }
 
     spotify.findSongs(setlist.artist, setlist.songs, function(spotifyTracks, notFoundSongs) {
-      if (!spotifyTracks || spotifyTracks.length == 0) {
-        setMessage('No songs found on Spotify', 'Please choose another setlist');
+      if (!spotifyTracks || spotifyTracks.length === 0) {
+        showMessage('No songs found on Spotify', 'Please choose another setlist');
         return;
       }
 
       var foundStatusStr = 'All songs found';
       if (notFoundSongs && notFoundSongs.length > 0) {
-        foundStatusStr = notFoundSongs.length + (notFoundSongs.length == 1 ? ' song' : ' songs') + ' not found: "' + notFoundSongs.join('", "') + '"';
+        foundStatusStr = notFoundSongs.length + (notFoundSongs.length === 1 ? ' song' : ' songs') + ' not found: "' + notFoundSongs.join('", "') + '"';
       }
 
-      setMessage('Saving as playlist', foundStatusStr);
-      spotify.createPlaylist(getPlaylistTitle(setlist), function(playlistId) {
+      showMessage('Saving as playlist', foundStatusStr);
+      spotify.createPlaylist(getPlaylistTitle(setlist), function(playlistId, playlistUrl) {
         spotify.addSongsToPlaylist(playlistId, spotifyTracks, function(success) {
           if (success) {
-            setMessage('Playlist created', foundStatusStr);
+            showMessage('Playlist created', foundStatusStr);
+            setSpotifyLink(playlistUrl, 'Play in Spotify');
           } else {
-            setMessage('Error saving playlist', 'Please try again');
+            showMessage('Error saving playlist', 'Please try again');
           }
         })
       });
@@ -54,9 +55,16 @@ function addSetlistAsPlaylistToSpotify(setlist) {
   })
 }
 
-function setMessage(line1, line2) {
+function showMessage(line1, line2) {
   document.getElementById('status-line1').textContent = line1;
   document.getElementById('status-line2').textContent = line2;
+}
+
+function setSpotifyLink(url, text) {
+  var a = document.getElementById('spotify-link');
+  a.textContent = text;
+  a.href = url;
+  document.getElementById('spotify').style.display = 'block';
 }
 
 function getPlaylistTitle(setlist) {
