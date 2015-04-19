@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "setlist.fm Playlist Exporter",
-  "description": "This extension exports setlists from setlist.fm as playlists to Spotify",
+  "name": "setlist.fm to Spotify Exporter",
+  "description": "This extension exports setlists from setlist.fm as playlists to Spotify.",
   "version": "1.0",
 
   "page_action": {
@@ -14,7 +14,7 @@
       "48": "images/icon48.png",
       "128": "images/icon128.png"
     },
-    "default_title": "Export playlist",
+    "default_title": "Export as playlist to Spotify",
     "default_popup": "popup.html"
   },
   "background": {

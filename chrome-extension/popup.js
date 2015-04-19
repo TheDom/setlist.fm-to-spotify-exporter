@@ -22,7 +22,7 @@ function main() {
     if (request.type === 'setlist') {
       var setlist = request.data;
       if (setlist && setlist.songs && setlist.songs.length) {
-        showMessage('Searching songs on Spotify', setlist.artist + ' - ' + setlist.songs.length + ' songs');
+        showMessage('Searching for songs on Spotify', setlist.artist + ' - ' + setlist.songs.length + (setlist.songs.length == 1 ? ' song' : ' songs'));
         addSetlistAsPlaylistToSpotify(setlist);
 
       } else {
