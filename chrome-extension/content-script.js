@@ -14,12 +14,26 @@ var SetlistFmExtractor = {
 
   getSongs: function() {
     var songs = [];
-    var songLabels = document.querySelectorAll('.setlistSongs .songLabel');
-    for (var i = 0; i < songLabels.length; i++) {
-      var song = songLabels[i].textContent;
+
+    // Walk through list elements
+    var listItems = document.querySelectorAll('.setlistSongs ol > li');
+    for (var i = 0; i < listItems.length; i++) {
+      // Find song
+      var songEl = listItems[i].querySelector(':scope .songPart .songLabel');
+      var song = (songEl ? songEl.textContent : null);
+
+      // Find tape
+      if (!song) {
+        var tape = listItems[i].querySelector(':scope.tape .songPart span');
+        song = (tape ? tape.textContent : song);
+      }
+
       // Split medley, e.g. 'Song A / Song B', into its songs
-      songs.push.apply(songs, song.split(' / '));
+      if (song) {
+        songs.push.apply(songs, song.split(' / '));
+      }
     }
+
     return songs;
   }
 };
