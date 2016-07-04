@@ -1,10 +1,10 @@
 var SetlistFmExtractor = {
   getArtist: function() {
-    return document.querySelector('h1 .headlineArtist').textContent;
+    return document.querySelector('.setlistHeadline h1 > strong a span').textContent;
   },
 
   getVenue: function() {
-    return document.querySelector('h1 .headlineVenue').textContent;
+    return document.querySelector('.setlistHeadline h1 > span span').textContent;
   },
 
   getDate: function() {
@@ -16,7 +16,7 @@ var SetlistFmExtractor = {
     var songs = [];
 
     // Walk through list elements
-    var listItems = document.querySelectorAll('.setlistSongs ol > li');
+    var listItems = document.querySelectorAll('.setlistList ol > li');
     for (var i = 0; i < listItems.length; i++) {
       // Find song
       var songEl = listItems[i].querySelector(':scope .songPart .songLabel');
