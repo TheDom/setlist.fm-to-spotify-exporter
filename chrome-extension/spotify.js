@@ -103,7 +103,7 @@ Spotify.prototype.findSongs = function(artist, songs, callback) {
 
 Spotify.prototype.findSong = function(artist, song, callback) {
   this.sendApiRequest('GET', '/v1/search', {
-    q: 'artist:' + artist + ' track:' + song,
+    q: 'artist:' + artist + ' track:' + song.replace("'", ""), // For some reason the Spotify API does not like ' anymore...
     type: 'track',
     market: 'from_token',
     limit: 1
