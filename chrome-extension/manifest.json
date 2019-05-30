@@ -31,6 +31,5 @@
     "https://www.setlist.fm/",
     "https://*.spotify.com/",
     "https://www.facebook.com/"
-  ],
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com/; object-src 'self'"
+  ]
 }

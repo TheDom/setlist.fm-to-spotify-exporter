@@ -1,21 +1,3 @@
-/*
- * Google Analytics
- */
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-62043254-1']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-/*
- * Main
- */
-
 function main() {
   // Install listener for setlist extraction callback
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -64,8 +46,6 @@ function addSetlistAsPlaylistToSpotify(setlist) {
           if (success) {
             showMessage('Playlist created', foundStatusStr);
             setSpotifyLink(playlistUrl, 'Play in Spotify');
-            _gaq.push(['_trackEvent', 'Setlist', setlist.artist, setlist.venue + ' (' + setlist.date + ')']);
-
           } else {
             showMessage('Error saving playlist', 'Please try again');
           }
