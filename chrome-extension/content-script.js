@@ -8,7 +8,7 @@ var SetlistFmExtractor = {
   },
 
   getDate: function() {
-    var breadCrumbBarEls = document.querySelector('.breadCrumbBar span').children;
+    var breadCrumbBarEls = document.querySelector('.breadCrumbBar').children;
     return breadCrumbBarEls[breadCrumbBarEls.length - 1].textContent.replace(' Setlist', '');
   },
 
